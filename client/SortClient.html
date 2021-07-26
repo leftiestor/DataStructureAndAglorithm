@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SortClient</title>
+</head>
+<body>
+<div id="main">
+
+  <div id="bubbleSort">
+    冒泡排序:
+  <p id="bubbleSortBefore"></p>
+  <p id="bubbleSortAfter"></p>
+  </div>
+
+
+
+  <div id="quickSort">
+    快速排序:
+    <p id="quickSortBefore"></p>
+    <p id="quickSortAfter"></p>
+  </div>
+
+</div>
+
+
+<script type="module">
+  import  { bubbleSort, modifiedBubbleSort } from '../Sort/bubbleSort.js';
+  import  { quickSort } from '../Sort/quickSort.js';
+
+  // const arr = [7, 6, 3, 9, 6, 0, 2, 8, 1];
+  let arr = [3, 5, 1, 6, 4, 7, 2];
+  // const arr = [1, 2, 3, 4, 5, 6, 7];
+
+  let bubbleSortBefore = document.getElementById('bubbleSortBefore');
+  let bubbleSortAfter = document.getElementById('bubbleSortAfter');
+  bubbleSortBefore.innerHTML = arr;
+  bubbleSortAfter.innerHTML = modifiedBubbleSort(arr);
+
+  arr = [3, 5, 1, 6, 4, 7, 2];
+  let quickSortBefore = document.getElementById('quickSortBefore');
+  let quickSortAfter = document.getElementById('quickSortAfter');
+  quickSortBefore.innerHTML = arr;
+  quickSortAfter.innerHTML = quickSort(arr);
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

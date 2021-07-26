@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>binarraySearchTree-Client</title>
+</head>
+<body>
+<div id="title">--------------本事不大，野心不小--------------</div>
+<div id="title2">BST: 二叉搜索树 </div>
+
+<pre id="main">
+  tree.insert(11);
+  tree.insert(5);
+  tree.insert(7);
+  tree.insert(8);
+  tree.insert(3);
+  tree.insert(12);
+  tree.insert(9);
+  tree.insert(14);
+  tree.insert(6);
+  tree.insert(20);
+</pre>
+
+<div id="inOrder"></div>
+<div id="preOrder"></div>
+<div id="postOrder"></div>
+
+<!--<script type="module" src="../Tree/BinarySearchTree.js"></script>-->
+<script type="module">
+  import  BinarySearchTree  from '../Tree/BinarySearchTree.js';
+
+
+
+
+
+  const tree = new BinarySearchTree();
+  tree.insert(11);
+  tree.insert(5);
+  tree.insert(7);
+  tree.insert(8);
+  tree.insert(3);
+  tree.insert(12);
+  tree.insert(9);
+  tree.insert(14);
+  tree.insert(6);
+  tree.insert(20);
+
+
+
+  //中序遍历  排序
+  const inOrder = (tree) => {
+      let str = '中序遍历结果： ';
+
+      const toStringFn = (item) => {
+          str +=  item +  '&nbsp;&nbsp;&nbsp;&nbsp;'
+      };
+      tree.inOrderTraverse( toStringFn );
+      let root = document.getElementById('inOrder');
+      root.innerHTML = str;
+  };
+  inOrder(tree);  //输出 中序遍历
+
+
+  //先序遍历  排序
+  const preOrder = (tree) => {
+      let str = '先序遍历结果： ';
+
+      const toStringFn = (item) => {
+          str +=  item +  '&nbsp;&nbsp;&nbsp;&nbsp;'
+      };
+      tree.preOrderTraverse( toStringFn );
+      let root = document.getElementById('preOrder');
+      root.innerHTML = str;
+  };
+  preOrder(tree);  //输出 先序遍历
+
+
+  //后序遍历  排序
+  const postOrder = (tree) => {
+      let str = '后序遍历结果： ';
+
+      const toStringFn = (item) => {
+          str +=  item +  '&nbsp;&nbsp;&nbsp;&nbsp;'
+      };
+      tree.postOrderTraverse( toStringFn );
+      let root = document.getElementById('postOrder');
+      root.innerHTML = str;
+  };
+  postOrder(tree);  //输出 后序遍历
+
+
+  console.log('BST：',tree);
+
+
+
+
+</script>
+</body>
+</html>
