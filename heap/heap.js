@@ -1,5 +1,5 @@
 
-import {Compare, defaultCompare, swap } from '../util/util.js';
+import { Compare, defaultCompare, swap } from '../util/util.js';
 
 /*
 * 二叉堆是一棵完全二叉树，表示树的每一层都有左侧和右侧子节点（除了最后一层的叶节点），并且最后一层的叶节点尽可能都是左侧子节点。（结构特性）

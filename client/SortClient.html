@@ -3,51 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <title>SortClient</title>
+  <style>
+    * {
+      padding: 0;
+      marging: 0;
+    }
+    body {
+      background-color: #eee;
+    }
+    div {
+      word-wrap: break-word;
+      word-break: break-all;
+      overflow: hidden;
+    }
+    #main {
+      margin: 20px 20px;
+      background-color: #ffffff;
+    }
+    #main textarea {
+      width: 100%;
+      height: 300px;
+    }
+    #mainArray textarea {
+      width: 100%;
+      height: 30px;
+    }
+  </style>
 </head>
+
 <body>
 <div id="main">
 
-  <div id="bubbleSort">
-    冒泡排序:
-  <p id="bubbleSortBefore"></p>
-  <p id="bubbleSortAfter"></p>
+  <div style="font-size: 22px; font-weight: bold;">要排序的数组：</div>
+    <div style="font-size: 22px; font-weight: bold;"><textarea id="beforeSortArray"></textarea></div>
+  <hr/>
+
+  <div id="mainArray">
+    <div id="bubbleSort">
+      1，冒泡排序:
+    <textarea id="bubbleSortBefore"></textarea>
+    <p>花费时间： <span id="bubbleSortAfter"></span> ms.</p>
+    </div><hr/>
+
+
+    <div id="selectionSort">
+      2，选择排序:
+      <textarea id="selectionSortBefore"></textarea>
+
+      <p>花费时间： <span id="selectionSortAfter"></span> ms.</p>
+    </div><hr/>
+
+    <div id="insertionSort">
+      3，插入排序:
+      <textarea id="insertionSortBefore"></textarea>
+
+      <p>花费时间： <span id="insertionSortAfter"></span> ms.</p>
+    </div><hr/>
+
+    <div id="quickSort">
+      4，快速排序:
+      <textarea id="quickSortBefore"></textarea>
+
+      <p>花费时间： <span id="quickSortAfter"></span> ms.</p>
+    </div><hr/>
+
+    <div id="mergeSort">
+      5，归并排序:
+      <textarea id="mergeSortBefore"></textarea>
+
+      <p>花费时间： <span id="mergeSortAfter"></span> ms.</p>
+    </div><hr/>
+
+    <div id="countingSort">
+      6，计数排序:
+      <textarea id="countingSortBefore"></textarea>
+
+      <p>花费时间： <span id="countingSortAfter"></span> ms.</p>
+    </div><hr/>
+
+    <div id="bucketSort">
+      7，桶排序:
+      <textarea id="bucketSortBefore"></textarea>
+
+      <p>花费时间： <span id="bucketSortAfter"></span> ms.</p>
+    </div><hr/>
+
+    <div id="radixSort">
+      8，基数排序:
+      <textarea id="radixSortBefore"></textarea>
+
+      <p>花费时间： <span id="radixSortAfter"></span> ms.</p>
+    </div><hr/>
+
+    <div id="heapSort">
+      9，堆排序:
+      <textarea id="heapSortBefore"></textarea>
+
+      <p>花费时间： <span id="heapSortAfter"></span> ms.</p>
+    </div><hr/>
+
   </div>
-
-
-
-  <div id="quickSort">
-    快速排序:
-    <p id="quickSortBefore"></p>
-    <p id="quickSortAfter"></p>
-  </div>
-
 </div>
 
 
 <script type="module">
   import  { bubbleSort, modifiedBubbleSort } from '../Sort/bubbleSort.js';
+  import  { selectionSort } from '../Sort/SelectionSort.js';
+  import  { insertionSort } from '../Sort/insertionSort.js';
   import  { quickSort } from '../Sort/quickSort.js';
+  import  { mergeSort } from '../Sort/mergeSort.js';
+  import  { countingSort } from '../Sort/countingSort.js';
+  import  { bucketSort } from '../Sort/bucketSort.js';
+  import  { radixSort } from '../Sort/radixSort.js';
+  import  { heapSort } from '../Sort/heapSort.js';
 
-  // const arr = [7, 6, 3, 9, 6, 0, 2, 8, 1];
-  let arr = [3, 5, 1, 6, 4, 7, 2];
-  // const arr = [1, 2, 3, 4, 5, 6, 7];
 
+  let beforeArray = [12, 4, 5, 6, 823, 9, 7, 2, 14, 23,46,57,86,15,27,24,25,31, 30,38,61,62,65,68,92,55,166,74,178,121,1,16,200,33,77,99,82,84,86,75,91,3,8,11,16,32,165,126,145,138,218,290,367,389,312,510,444,412,435,478,578,456,345,234,678,765,543,457,700,1000, 2345,7890,1267,874,90909,67896,34567];
+    beforeArray = [12, 4, 5, 6, 823, 9, 7, 2, 14, 23,46,57,86,15,27,24,25,31];
+
+  // 随机生成一个大数组。
+  let newArray = [];
+  for (let i = 0; i < 10000 ; i++) {
+      newArray.push( Math.floor(Math.random() * 1000000 ) );
+  }
+  beforeArray = newArray;
+
+
+  let arr = new Array(...beforeArray);
+  let beforeSortArray = document.getElementById('beforeSortArray');
+  beforeSortArray.innerHTML = beforeArray;
+
+  // 1，冒泡排序:
   let bubbleSortBefore = document.getElementById('bubbleSortBefore');
   let bubbleSortAfter = document.getElementById('bubbleSortAfter');
-  bubbleSortBefore.innerHTML = arr;
-  bubbleSortAfter.innerHTML = modifiedBubbleSort(arr);
+  let data_a = new Date().getTime();
+  //console.log(data_a)
+  let result = modifiedBubbleSort(arr);
+  let data_b = new Date().getTime();
+  //console.log(data_b)
+  bubbleSortBefore.innerHTML = result;
+  bubbleSortAfter.innerHTML = data_b - data_a;
 
-  arr = [3, 5, 1, 6, 4, 7, 2];
+  // 2，选择排序:
+  arr = new Array(...beforeArray);
+  let selectionSortBefore = document.getElementById('selectionSortBefore');
+  let selectionSortAfter = document.getElementById('selectionSortAfter');
+  data_a = new Date().getTime();
+  result = selectionSort(arr);
+  data_b = new Date().getTime();
+  selectionSortBefore.innerHTML = result;
+  selectionSortAfter.innerHTML = data_b - data_a;
+
+  // 3，插入排序:
+  arr = new Array(...beforeArray);
+  let insertionSortBefore = document.getElementById('insertionSortBefore');
+  let insertionSortAfter = document.getElementById('insertionSortAfter');
+  data_a = new Date().getTime();
+  result = insertionSort(arr);
+  data_b = new Date().getTime();
+  insertionSortBefore.innerHTML = result;
+  insertionSortAfter.innerHTML = data_b - data_a;
+
+  // 4，快速排序:
+  arr = new Array(...beforeArray);
   let quickSortBefore = document.getElementById('quickSortBefore');
   let quickSortAfter = document.getElementById('quickSortAfter');
-  quickSortBefore.innerHTML = arr;
-  quickSortAfter.innerHTML = quickSort(arr);
+  data_a = new Date().getTime();
+  result = quickSort(arr);
+  data_b = new Date().getTime();
+  quickSortBefore.innerHTML = result;
+  quickSortAfter.innerHTML = data_b - data_a;
 
+  // 5，归并排序:
+  arr = new Array(...beforeArray);
+  let mergeSortBefore = document.getElementById('mergeSortBefore');
+  let mergeSortAfter = document.getElementById('mergeSortAfter');
+  data_a = new Date().getTime();
+  result = mergeSort(arr);
+  data_b = new Date().getTime();
+  mergeSortBefore.innerHTML = result;
+  mergeSortAfter.innerHTML = data_b - data_a;
 
+  // 6，计数排序:
+  arr = new Array(...beforeArray);
+  let countingSortBefore = document.getElementById('countingSortBefore');
+  let countingSortAfter = document.getElementById('countingSortAfter');
+  data_a = new Date().getTime();
+  result = countingSort(arr);
+  data_b = new Date().getTime();
+  countingSortBefore.innerHTML = result;
+  countingSortAfter.innerHTML = data_b - data_a;
 
+  // 7，桶排序:
+  arr = new Array(...beforeArray);
+  let bucketSortBefore = document.getElementById('bucketSortBefore');
+  let bucketSortAfter = document.getElementById('bucketSortAfter');
+  data_a = new Date().getTime();
+  result = bucketSort(arr);
+  data_b = new Date().getTime();
+  bucketSortBefore.innerHTML = result;
+  bucketSortAfter.innerHTML = data_b - data_a;
 
+  // 8，基数排序:
+  arr = new Array(...beforeArray);
+  let radixSortBefore = document.getElementById('radixSortBefore');
+  let radixSortAfter = document.getElementById('radixSortAfter');
+  data_a = new Date().getTime();
+  result = radixSort(arr);
+  data_b = new Date().getTime();
+  radixSortBefore.innerHTML = result;
+  radixSortAfter.innerHTML = data_b - data_a;
 
-
+  // 9，堆排序:
+  arr = new Array(...beforeArray);
+  let heapSortBefore = document.getElementById('heapSortBefore');
+  let heapSortAfter = document.getElementById('heapSortAfter');
+  data_a = new Date().getTime();
+  result = heapSort(arr);
+  data_b = new Date().getTime();
+  heapSortBefore.innerHTML = result;
+  heapSortAfter.innerHTML = data_b - data_a;
 
 </script>
 </body>
